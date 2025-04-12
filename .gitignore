@@ -1,0 +1,4 @@
+# Ignore sensitive files
+client_secret*.json
+*.db
+# API Keys
