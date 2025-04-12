@@ -96,6 +96,11 @@ While(1)CareAI is a comprehensive healthcare solution integrating AI for medical
 3. Using the system:
    - For patients: Access the home page for medical image analysis
    - For doctors: Use the doctor dashboard to view patient records and analyses
+  <img width="1470" alt="Screenshot 2025-04-12 at 9 57 47 PM" src="https://github.com/user-attachments/assets/f98d8a58-8f07-4228-bb15-506df93f8a25" />
+<img width="1470" alt="Screenshot 2025-04-12 at 9 04 06 PM" src="https://github.com/user-attachments/assets/8aac5634-e3fa-452a-bc46-e792e4826543" />
+
+
+   
 
 ## Future Roadmap
 
