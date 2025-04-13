@@ -11,7 +11,7 @@ While(1)CareAI is a comprehensive healthcare solution integrating AI for medical
 ## Live Demo and ppt and presentation video links
 
 For Video Demo
-https://drive.google.com/drive/u/3/home
+[https://drive.google.com/drive/u/3/home](https://drive.google.com/file/d/1Oe_IghfVzKBcsAsn4oUIKT7QeNrnXotM/view?usp=share_link)
 
 For ppt 
 https://docs.google.com/presentation/d/1rUj-osOSw9LMpuM4ypk2f_lFPd-FrmKU/edit?usp=sharing&ouid=100389320335860981800&rtpof=true&sd=true
