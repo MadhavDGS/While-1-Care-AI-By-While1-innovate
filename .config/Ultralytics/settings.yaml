@@ -1,0 +1,15 @@
+settings_version: 0.0.4
+datasets_dir: datasets
+weights_dir: weights
+runs_dir: runs
+uuid: ''
+sync: true
+api_key: ''
+settings_version: 0.0.4
+runs_dir: runs
+weights_dir: weights
+datasets_dir: datasets
+autosave: true
+show_download_progress: true
+default_model_path: yolov8n.pt
+disable_analytics: true 
