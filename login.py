@@ -8,12 +8,7 @@ st.set_page_config(
     page_title="While(1)Care AI",
     page_icon="❤️",
     layout="wide",
-    initial_sidebar_state="collapsed",
-    menu_items={
-        'Get Help': None,
-        'Report a bug': None,
-        'About': None
-    }
+    initial_sidebar_state="collapsed"
 )
 
 # Supabase configuration
