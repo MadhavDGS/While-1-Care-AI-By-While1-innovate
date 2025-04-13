@@ -6,8 +6,8 @@ numpy==1.26.4
 deep-translator==1.11.4
 SpeechRecognition==3.10.1
 pyttsx3==2.90
-torch==2.2.0
-torchvision==0.17.0
+torch==1.13.1
+torchvision==0.14.1
 watchdog==3.0.0
 folium==0.12.1
 streamlit-folium==0.7.0
@@ -21,4 +21,4 @@ pandas>=2.2.0
 reportlab>=4.0.9
 google-auth-oauthlib>=1.2.0
 google-api-python-client>=2.120.0
-ultralytics==8.0.196
+ultralytics==8.0.20
