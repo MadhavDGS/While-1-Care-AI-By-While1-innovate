@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Must be the first Streamlit command
 st.set_page_config(
-    page_title="EscobarsCare AI Healthcare Login",
+    page_title="While(1)Care AI",
     page_icon="♡",
     layout="centered",
     initial_sidebar_state="collapsed"
