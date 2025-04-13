@@ -1480,10 +1480,23 @@ def analyze_with_model(selected_model, image_data):
             raise ValueError("Unsupported image format")
 
         # Load the model
-        model = YOLO(model_paths[selected_model])
+        try:
+            # First try loading with legacy mode
+            model = YOLO(model_paths[selected_model], task='detect')
+        except Exception as e1:
+            try:
+                # If that fails, try loading with custom config
+                model = YOLO(model_paths[selected_model], task='detect', legacy=True)
+            except Exception as e2:
+                st.error(f"Error loading model: {str(e2)}")
+                return None
 
         # Run inference with the numpy array
-        results = model(image)
+        try:
+            results = model(image, verbose=False)  # Disable verbose output
+        except Exception as e:
+            st.error(f"Error running inference: {str(e)}")
+            return None
 
         # Process results and save without labels
         for result in results:
