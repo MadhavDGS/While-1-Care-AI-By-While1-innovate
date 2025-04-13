@@ -308,12 +308,9 @@ def main():
     
     st.title(f"Welcome Dr. {st.session_state.get('full_name', '')}")
     
-    # Set video background (using the neurons video)
-    try:
-        video_background_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/NITP/While(1)CareAI/assets/neurons-structure-sending-electric-impulses-and-communicating-each-other-3d-an-SBV-346464687-preview.mp4"
-        set_video_background(video_background_path)
-    except Exception as e:
-        st.warning(f"Could not load background video: {str(e)}")
+    # Set video background
+    video_background_path = "assets/neurons-structure-sending-electric-impulses-and-communicating-each-other-3d-an-SBV-346464687-preview.mp4"
+    set_video_background(video_background_path)
 
     # Store doctor's email from session state
     doctor_email = st.session_state.get('email', 'test_doctor@example.com')

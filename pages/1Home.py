@@ -1634,7 +1634,7 @@ def main():
     add_logout_button()
     
     # Set video background
-    video_background_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/NITP/While(1)CareAI/assets/journey-through-a-neuron-cell-network-inside-the-brain-SBV-337862610-preview.mp4"
+    video_background_path = "assets/journey-through-a-neuron-cell-network-inside-the-brain-SBV-337862610-preview.mp4"
     set_video_background(video_background_path)
     
     # Add welcome message in sidebar (already handled in sidebar logic)

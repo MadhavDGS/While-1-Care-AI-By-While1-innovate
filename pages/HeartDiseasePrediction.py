@@ -305,8 +305,8 @@ if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
 # Add logout button
 add_logout_button()
 
-# Set video background instead of static image
-video_background_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/NITP/While(1)CareAI/assets/heartbeat-human-chest-with-beating-heart-medical-animation-SBV-347758189-preview.mp4"
+# Set video background
+video_background_path = "assets/heartbeat-human-chest-with-beating-heart-medical-animation-SBV-347758189-preview.mp4"
 set_video_background(video_background_path)
 
 # Load dataset for preprocessing reference

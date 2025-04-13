@@ -269,7 +269,7 @@ if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
 add_logout_button()
 
 # Set video background
-video_background_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/NITP/While(1)CareAI/assets/looping-heart-ekg-graphic-SBV-300338919-preview.mp4"
+video_background_path = "assets/looping-heart-ekg-graphic-SBV-300338919-preview.mp4"
 set_video_background(video_background_path)
 
 # Add title and description
