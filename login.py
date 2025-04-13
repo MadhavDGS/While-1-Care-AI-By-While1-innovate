@@ -7,7 +7,7 @@ from datetime import datetime
 st.set_page_config(
     page_title="While(1)Care AI",
     page_icon="❤️",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="collapsed"
 )
 
