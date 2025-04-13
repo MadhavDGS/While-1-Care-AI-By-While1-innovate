@@ -8,6 +8,21 @@ While(1)CareAI is a comprehensive healthcare solution integrating AI for medical
 
 **Vision:** Making advanced medical diagnostics accessible to everyone, especially in areas with limited specialist access.
 
+## Live Demo 🚀
+
+Experience While(1)CareAI in action:
+- **Live Application:** [https://while-1-careai.streamlit.app](https://while-1-careai.streamlit.app)
+- **Status:** Active and Running
+- **Access:** Available 24/7 for testing and demonstration
+
+### Demo Credentials
+For testing purposes, you can use:
+- **Patient Login:** Create a new account or contact us for demo credentials
+- **Doctor Login:** Available upon request for medical professionals
+
+### Note
+The live demo is hosted on Streamlit Cloud and represents the latest stable version of the application.
+
 ## Key Features
 
 - **Medical Image Analysis:** Specialized detection models for various medical conditions
