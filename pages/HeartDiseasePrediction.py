@@ -309,10 +309,17 @@ add_logout_button()
 video_background_path = "assets/heartbeat-human-chest-with-beating-heart-medical-animation-SBV-347758189-preview.mp4"
 set_video_background(video_background_path)
 
-# Load dataset for preprocessing reference
-df = pd.read_csv(r"/Users/sreemadhav/SreeMadhav/Mhv CODES/MGIT/HealthProjectP7_adding_pages/heart_attack_dataset_processed.csv")
-X = df.drop(columns=["Outcome"])
-y = df["Outcome"]
+# Load the dataset with error handling
+try:
+    df = pd.read_csv("assets/heart_attack_dataset_processed.csv")
+    X = df.drop(columns=["Outcome"])
+    y = df["Outcome"]
+except FileNotFoundError:
+    st.error("Dataset file not found. Please make sure 'heart_attack_dataset_processed.csv' exists in the assets directory.")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading dataset: {str(e)}")
+    st.stop()
 
 # Define selected features based on the provided dataset
 selected_features = [
