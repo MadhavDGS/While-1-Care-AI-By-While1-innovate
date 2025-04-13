@@ -32,57 +32,68 @@ def get_base64_of_bin_file(bin_file):
 
 def set_video_background(video_path):
     """Set a video as the background for the Streamlit app."""
-    video_html = f"""
-    <style>
-    .stApp {{
-        background: transparent; 
-    }}
-    
-    .video-container {{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-    }}
-    
-    video {{
-        position: absolute;
-        min-width: 100%; 
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        object-fit: cover;
-        opacity: 1.0; 
-    }}
-    
-    /* Overlay CSS */
-    .overlay {{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.1); /* Set opacity to 0.1 */
-        z-index: -1;
-    }}
-    </style>
-    
-    <div class="video-container">
-        <video autoplay loop muted playsinline>
-            <source src="data:video/mp4;base64,{get_base64_of_bin_file(video_path)}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <!-- Overlay div -->
-    <div class="overlay"></div>
-    """
-    st.markdown(video_html, unsafe_allow_html=True)
+    try:
+        video_base64 = get_base64_of_bin_file(video_path)
+        video_html = f"""
+        <style>
+        .stApp {{
+            background: transparent; 
+        }}
+        
+        .video-container {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }}
+        
+        video {{
+            position: absolute;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 1.0; 
+        }}
+        
+        /* Overlay CSS */
+        .overlay {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }}
+        </style>
+        
+        <div class="video-container">
+            <video autoplay loop muted playsinline>
+                <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="overlay"></div>
+        """
+        st.markdown(video_html, unsafe_allow_html=True)
+    except Exception as e:
+        st.warning(f"Unable to load video background. Using default background.")
+        # Set a fallback background color
+        st.markdown("""
+            <style>
+            .stApp {
+                background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
 def get_image_base64(image_path):
     """Get base64 encoded image"""
@@ -145,7 +156,7 @@ def verify_otp(email, otp_code):
 
 def show_login_page():
     # Set video background first inside the function
-    video_background_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/NITP/While(1)CareAI/assets/dark-heart-of-space.3840x2160.mp4"
+    video_background_path = "assets/dark-heart-of-space.3840x2160.mp4"
     set_video_background(video_background_path)
     
     # Custom CSS
