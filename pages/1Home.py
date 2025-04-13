@@ -487,29 +487,51 @@ with st.sidebar:
 
 def load_model(model_type):
     """Load YOLO model based on type"""
-    model_paths = {
-        'brain_tumor': "braintumorp1.pt",  # your existing model
-        'eye_disease': "eye.pt",  # to be added later
-        'lung_cancer': "lung_cancer.pt",  # to be added later
-        'bone_fracture': "bone.pt",  # to be added later
-        'skin_disease': "skin345.pt",  # to be added later
-        'diabetic_retinopathy': "xiaoru.pt",  # Diabetic retinopathy detection
-        'diabetic_tongue': "tongue(2).pt",  # Diabetic tongue analysis
-        'diabetic_ulcer': "ulcer.pt",  # Diabetic ulcer detection
-        'diabetic_nail': "nails.pt"  # Diabetic nail analysis
-    }
+    try:
+        # Initialize models dict if not exists
+        if 'models' not in st.session_state:
+            st.session_state.models = {}
 
-    if model_type not in st.session_state.models:
-        model_path = model_paths.get(model_type)
-        if model_path and os.path.exists(model_path):
-            st.session_state.models[model_type] = YOLO(model_path)
-        else:
-            st.warning(f"Model for {model_type} not found. Only Brain Tumor and Diabetic detection models are currently available.")
-            if model_type not in ['brain_tumor', 'diabetic_retinopathy', 'diabetic_tongue', 'diabetic_ulcer', 'diabetic_nail']:
-                return None
-            # Fallback to brain tumor model
-            st.session_state.models[model_type] = YOLO("braintumorp1.pt")
-    return st.session_state.models.get(model_type)
+        model_paths = {
+            'brain_tumor': "braintumorp1.pt",
+            'eye_disease': "eye.pt",
+            'lung_cancer': "lung_cancer.pt",
+            'bone_fracture': "bone.pt",
+            'skin_disease': "skin345.pt",
+            'diabetic_retinopathy': "xiaoru.pt",
+            'diabetic_tongue': "tongue(2).pt",
+            'diabetic_ulcer': "ulcer.pt",
+            'diabetic_nail': "nails.pt"
+        }
+
+        # If model not loaded yet
+        if model_type not in st.session_state.models:
+            model_path = model_paths.get(model_type)
+            
+            # Debug info
+            st.write(f"Attempting to load model: {model_type}")
+            st.write(f"Model path: {model_path}")
+            
+            if model_path and os.path.exists(model_path):
+                st.write(f"Loading model from path: {model_path}")
+                st.session_state.models[model_type] = YOLO(model_path)
+                st.write(f"Successfully loaded model: {model_type}")
+            else:
+                st.error(f"Model file not found: {model_path}")
+                available_models = [k for k, v in model_paths.items() if os.path.exists(v)]
+                st.info(f"Available models: {', '.join(available_models)}")
+                
+                # Only fallback for non-available models
+                if model_type not in available_models:
+                    st.warning("Falling back to brain tumor model")
+                    st.session_state.models[model_type] = YOLO("braintumorp1.pt")
+                else:
+                    return None
+
+        return st.session_state.models.get(model_type)
+    except Exception as e:
+        st.error(f"Error loading model {model_type}: {str(e)}")
+        return None
 
 
 def translate_text(text, target_lang):
