@@ -1295,7 +1295,9 @@ def generate_image_description(image_data):
         'Detected: Tongue condition. Use tongue detection.'
         'Detected: Foot ulcer. Use ulcer detection.'
         'Detected: Nail infection. Use nail detection.'
-
+        if you see nail then say dail detection
+        if you see skin ulcer type then say ulcer detection
+        dont messup the model name with other disease
         Analyze the image carefully and choose the MOST appropriate model from the list above. Do not suggest any other models except if there is no other disease then say you are healthy and no disease detected.
         """
         
