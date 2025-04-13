@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 import io
-import absl.logging
+import logging
 import os
 import base64
 import pandas as pd
@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import re
 
-absl.logging.set_verbosity(absl.logging.ERROR)
+logging.set_verbosity(logging.ERROR)
 
 def get_base64_of_bin_file(bin_file):
     """Convert a binary file to a base64 string."""
