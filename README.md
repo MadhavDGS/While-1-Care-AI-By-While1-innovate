@@ -8,7 +8,14 @@ While(1)CareAI is a comprehensive healthcare solution integrating AI for medical
 
 **Vision:** Making advanced medical diagnostics accessible to everyone, especially in areas with limited specialist access.
 
-## Live Demo 🚀
+## Live Demo and ppt and presentation video links
+
+For Video Demo
+https://drive.google.com/drive/u/3/home
+
+For ppt 
+https://docs.google.com/presentation/d/1rUj-osOSw9LMpuM4ypk2f_lFPd-FrmKU/edit?usp=sharing&ouid=100389320335860981800&rtpof=true&sd=true
+
 
 Experience While(1)CareAI in action:
 - **Live Application:** [https://while-1-careai.streamlit.app](https://while-1-careai.streamlit.app)
