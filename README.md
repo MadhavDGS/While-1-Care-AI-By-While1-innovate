@@ -98,6 +98,27 @@ While(1)CareAI is a comprehensive healthcare solution integrating AI for medical
    - For doctors: Use the doctor dashboard to view patient records and analyses
   <img width="1470" alt="Screenshot 2025-04-12 at 9 57 47 PM" src="https://github.com/user-attachments/assets/f98d8a58-8f07-4228-bb15-506df93f8a25" />
 <img width="1470" alt="Screenshot 2025-04-12 at 9 04 06 PM" src="https://github.com/user-attachments/assets/8aac5634-e3fa-452a-bc46-e792e4826543" />
+## Testing
+
+### Sample Test Images
+The repository includes a `TestImages` directory with sample medical images for testing various analysis features:
+
+- Brain MRI scans for tumor detection
+- Eye images for diabetic retinopathy analysis
+- Skin condition images
+- Lung X-rays
+- Blood report samples
+- And more...
+
+You can use these images to test the system's analysis capabilities without needing to upload your own medical images initially. These images are provided for demonstration purposes only.
+
+### How to Use Test Images
+1. Navigate to the appropriate analysis section in the application
+2. Instead of uploading your own image, use one from the `TestImages` directory
+3. Test different analysis features with relevant sample images
+4. Review the AI's analysis and generated reports
+
+Note: These test images are carefully selected examples and are meant for demonstration purposes only. Real medical analysis should be performed with actual patient images.
 
 
    
