@@ -12,8 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import re
 
-# Configure logging to suppress warnings
-logging.basicConfig(level=logging.ERROR)
+logging.set_verbosity(logging.ERROR)
 
 def get_base64_of_bin_file(bin_file):
     """Convert a binary file to a base64 string."""
@@ -111,21 +110,21 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 # Styling - Use the comprehensive blue theme from 1Home.py
 st.markdown("""
-<style>
+    <style>
 /* Add Sidebar and Header styles first */
-.stApp > header {
-    background-color: transparent !important;
-}
-.stApp {
+    .stApp > header {
+        background-color: transparent !important;
+    }
+    .stApp {
     color: white; /* Ensure text is visible on dark background */
-}
-[data-testid="stSidebar"] {
+    }
+    [data-testid="stSidebar"] {
     background-color: rgba(0, 0, 0, 0.5) !important; /* Adjust opacity as needed */
     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-[data-testid="stSidebar"] > div:first-child {
-    background-color: transparent !important;
-}
+    }
+    [data-testid="stSidebar"] > div:first-child {
+        background-color: transparent !important;
+    }
 [data-testid="stSidebar"] * {
     color: white !important;
 }
@@ -331,8 +330,8 @@ div[data-baseweb*="selected"],
 .st-dk.st-df.st-dg.st-cs.st-df.st-dg {
     background-color: #00d2ff !important;
     border-color: #00d2ff !important;
-    color: white !important;
-}
+        color: white !important;
+    }
 
 /* All focus rings should be blue */
 *:focus-visible {
@@ -363,30 +362,30 @@ progress,
 }
 
 /* Additional styling specific to heart_report_analyzer */
-.prediction-box {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .prediction-box {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.risk-high {
+    .risk-high {
     color: var(--error-color); /* Use CSS variable */
-    font-weight: bold;
-}
+        font-weight: bold;
+    }
 
-.risk-medium {
+    .risk-medium {
     color: var(--warning-color); /* Use CSS variable */
-    font-weight: bold;
-}
+        font-weight: bold;
+    }
 
-.risk-low {
+    .risk-low {
     color: var(--success-color); /* Use CSS variable */
-    font-weight: bold;
-}
+        font-weight: bold;
+    }
 
-</style>
+    </style>
 """, unsafe_allow_html=True)
 
 # Title and description
