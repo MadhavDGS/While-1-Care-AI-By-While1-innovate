@@ -8,8 +8,9 @@ serverAddress = "0.0.0.0"
 serverPort = 8501
 
 [theme]
+base = "dark"
 primaryColor = "#0066ff"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f0f2f6"
-textColor = "#262730"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#262730"
+textColor = "#fafafa"
 font = "sans serif"
