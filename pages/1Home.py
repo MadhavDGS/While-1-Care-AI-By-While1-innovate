@@ -117,9 +117,9 @@ detection_types = {
     "bone_fracture": "<i class='fas fa-bone'></i> Bone Fracture",
     "skin_disease": "<i class='fas fa-microscope'></i> Skin Disease",
     "diabetic_retinopathy": "<i class='fas fa-eye'></i> Diabetic Retinopathy",
-    "diabetic_tongue": "<i class='fas fa-tongue'></i> Diabetic Tongue Analysis",
-    "diabetic_ulcer": "<i class='fas fa-band-aid'></i> Diabetic Ulcer",
-    "diabetic_nail": "<i class='fas fa-hand'></i> Diabetic Nail Analysis"
+    "tongue": "<i class='fas fa-tongue'></i> Tongue Analysis",
+    "ulcer": "<i class='fas fa-band-aid'></i> Ulcer Detection",
+    "nail": "<i class='fas fa-hand'></i> Nail Analysis"
 }
 
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -499,9 +499,9 @@ def load_model(model_type):
             'bone_fracture': "bone.pt",
             'skin_disease': "skin345.pt",
             'diabetic_retinopathy': "xiaoru.pt",
-            'diabetic_tongue': "tongue(2).pt",
-            'diabetic_ulcer': "ulcer.pt",
-            'diabetic_nail': "nails.pt"
+            'tongue': "tongue(2).pt",
+            'ulcer': "ulcer.pt",
+            'nail': "nails.pt"
         }
 
         # If model not loaded yet
@@ -1269,26 +1269,42 @@ def generate_image_description(image_data):
         # Create model instance and generate description
         model = genai.GenerativeModel("gemini-2.0-flash")
         
-        # Updated prompt to include diabetic conditions
+        # Updated prompt to match available models and improve selection
         prompt = """
         Analyze this medical image and respond in exactly 7 words following this format:
-        'Detected: [condition]. Use [detection_type] detection model.'
+        'Detected: [condition]. Use [model] detection.'
         
+        Choose the most appropriate model from this list only:
+        1. Brain tumor detection - for brain MRI/CT scans
+        2. Eye disease detection - for eye/retinal images
+        3. Lung cancer detection - for chest X-rays/CT
+        4. Bone fracture detection - for bone X-rays
+        5. Skin disease detection - for skin conditions
+        6. Diabetic retinopathy detection - for retinal scans
+        7. Tongue detection - for tongue analysis
+        8. Ulcer detection - for wound/ulcer images
+        9. Nail detection - for nail condition analysis
+
         Example responses:
-        'Detected: Brain tumor. Use brain tumor detection.'
-        'Detected: Eye condition. Use eye disease detection.'
-        'Detected: Diabetic tongue. Use diabetic tongue detection.'
-        'Detected: Diabetic ulcer. Use diabetic ulcer detection.'
-        'Detected: Diabetic nail. Use diabetic nail detection.'
-        'Detected: Diabetic retinopathy. Use diabetic retinopathy detection.'
+        'Detected: Brain mass. Use brain tumor detection.'
+        'Detected: Retinal abnormality. Use eye disease detection.'
+        'Detected: Chest mass. Use lung cancer detection.'
+        'Detected: Broken bone. Use bone fracture detection.'
+        'Detected: Skin lesion. Use skin disease detection.'
+        'Detected: Retinal damage. Use diabetic retinopathy detection.'
+        'Detected: Tongue condition. Use tongue detection.'
+        'Detected: Foot ulcer. Use ulcer detection.'
+        'Detected: Nail infection. Use nail detection.'
+
+        Analyze the image carefully and choose the MOST appropriate model from the list above. Do not suggest any other models except if there is no other disease then say you are healthy and no disease detected.
         """
         
         response = model.generate_content(
             [prompt, {"mime_type": "image/png", "data": img_bytes}],
             generation_config=genai.types.GenerationConfig(
-                temperature=0.1,  # Lower temperature for more focused response
-                max_output_tokens=30,  # Limit token length
-                top_p=0.1,  # More focused sampling
+                temperature=0.1,  # Low temperature for consistent model selection
+                max_output_tokens=30,
+                top_p=0.1,
             )
         )
 
@@ -1504,9 +1520,9 @@ def analyze_with_model(selected_model, image_data):
             "bone_fracture": "bone.pt",
             "skin_disease": "skin345.pt",
             "diabetic_retinopathy": "xiaoru.pt",
-            "diabetic_tongue": "tongue(2).pt",
-            "diabetic_ulcer": "ulcer.pt",
-            "diabetic_nail": "nails.pt"
+            "tongue": "tongue(2).pt",
+            "ulcer": "ulcer.pt",
+            "nail": "nails.pt"
         }
 
         # Convert image data to numpy array
