@@ -12,7 +12,8 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import re
 
-logging.set_verbosity(logging.ERROR)
+# Configure logging to suppress warnings
+logging.basicConfig(level=logging.ERROR)
 
 def get_base64_of_bin_file(bin_file):
     """Convert a binary file to a base64 string."""
