@@ -141,26 +141,33 @@ def monitor_latest_data():
         time.sleep(1)  # Check every second for new data
 
 # Add your existing background and logout functions
-def set_background(png_file):
-    """Set the background image for the Streamlit app."""
-    bin_str = get_base64_of_bin_file(png_file)
-    page_bg_img = f'''
-    <style>
-    .stApp {{
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("data:image/jpg;base64,{bin_str}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
-    </style>
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
-
 def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
+    try:
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    except Exception as e:
+        st.warning(f"Could not load background image: {str(e)}")
+        return None
+
+def set_background(png_file):
+    try:
+        bin_str = get_base64_of_bin_file(png_file)
+        if bin_str is not None:
+            page_bg_img = '''
+            <style>
+            .stApp {
+                background-image: url("data:image/jpg;base64,%s");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+            </style>
+            ''' % bin_str
+            st.markdown(page_bg_img, unsafe_allow_html=True)
+    except Exception as e:
+        st.warning(f"Could not set background image: {str(e)}")
 
 def add_logout_button():
     if st.sidebar.button("Logout"):
@@ -224,7 +231,7 @@ if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
 add_logout_button()
 
 # Set background image
-background_image_path = "/Users/sreemadhav/SreeMadhav/Mhv CODES/MGIT/HealthProjectP8_final/wallpaperflare.com_wallpaper.jpg"
+background_image_path = "assets/wallpaperflare.com_wallpaper.jpg"
 set_background(background_image_path)
 
 # Add title and description
