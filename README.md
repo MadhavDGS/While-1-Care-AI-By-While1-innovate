@@ -17,8 +17,10 @@ Experience While(1)CareAI in action:
 
 ### Demo Credentials
 For testing purposes, you can use:
-- **Patient Login:** Create a new account or contact us for demo credentials
-- **Doctor Login:** Available upon request for medical professionals
+- **Patient Login:** Create a new account or use the registration feature
+- **Test Doctor Login:** Click the "Login as Test Doctor" button on the login page
+  - This provides immediate access to the doctor dashboard with sample patient data
+  - Perfect for exploring the doctor-side features without registration
 
 ### Note
 The live demo is hosted on Streamlit Cloud and represents the latest stable version of the application.
@@ -33,6 +35,11 @@ The live demo is hosted on Streamlit Cloud and represents the latest stable vers
 - **AI Chat Assistant:** Medical query support with natural language processing
 - **PDF Report Generation:** Professional medical reports with analysis results
 - **Hospital Locator:** Maps integration for finding nearby healthcare facilities
+- **Video Backgrounds:** Immersive medical-themed video backgrounds for better UX
+- **Language Translation:** Support for multiple languages using deep translation
+- **Voice Assistance:** Text-to-speech and speech-to-text capabilities
+- **Google Fit Integration:** Real-time health data synchronization
+- **Dark Mode Support:** Enhanced visibility and reduced eye strain
 
 ## Use Cases
 
@@ -64,8 +71,15 @@ The live demo is hosted on Streamlit Cloud and represents the latest stable vers
 
 - **Brain Tumor Detection:** MRI scan analysis
 - **Diabetic Retinopathy:** Eye image analysis
-- **Heart Disease Prediction:** Cardiac health assessment
-- **Additional Analyses:** Bone fracture, skin disease, lung cancer detection
+- **Heart Disease Prediction:** Cardiac health assessment with ML model
+- **Bone Fracture Detection:** X-ray image analysis
+- **Skin Disease Analysis:** Dermatological condition detection
+- **Lung Cancer Detection:** Chest X-ray analysis
+- **Ulcer Detection:** Oral cavity examination
+- **Tongue Analysis:** Traditional medicine diagnostic support
+- **Nail Disease Detection:** Nail health assessment
+- **Blood Report Analysis:** Automated report interpretation
+- **Heart Report Analysis:** ECG and cardiac report interpretation
 
 ## Getting Started
 
