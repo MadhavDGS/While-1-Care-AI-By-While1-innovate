@@ -7,7 +7,7 @@ from PIL import Image
 import google.generativeai as genai
 import io
 import warnings
-import absl.logging
+import logging
 import base64
 from pathlib import Path
 import folium
@@ -25,6 +25,12 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT
 # Import Supabase client for database operations
 from supabase import create_client, Client
 import uuid
+from deep_translator import GoogleTranslator
+import speech_recognition as sr
+import pyttsx3
+
+# Configure logging
+logging.basicConfig(level=logging.ERROR)
 
 # Supabase configuration
 SUPABASE_URL = "https://xahzxcipqkckawzcyzcl.supabase.co"
@@ -39,7 +45,6 @@ except Exception as e:
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
-absl.logging.set_verbosity(absl.logging.ERROR)
 
 # Add base64 encoding function needed for video background
 def get_base64_of_bin_file(bin_file):

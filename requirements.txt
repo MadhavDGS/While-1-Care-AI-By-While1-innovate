@@ -21,5 +21,4 @@ pandas>=2.2.0
 reportlab>=4.0.9
 google-auth-oauthlib>=1.2.0
 google-api-python-client>=2.120.0
-absl-logging>=1.0.0
 ultralytics==8.1.0
