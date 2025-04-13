@@ -1269,44 +1269,87 @@ def generate_image_description(image_data):
 
 
 def get_current_location():
-    """Get user's current location using IP address"""
-    try:
-        # Use a public IP geolocation API
-        response = requests.get('https://ipinfo.io/json', timeout=5)
-        
-        if response.status_code == 200:
-            data = response.json()
-            # Check if we got rate limited
-            if data.get('error') and 'rate limit' in data.get('reason', '').lower():
-                # Fallback to alternative IP geolocation service
-                response = requests.get('https://ipinfo.io/json', timeout=5)
-                data = response.json()
-            
-            # Extract location data with validation
-            try:
-                coords = data.get('loc', '17.4065,78.4772').split(',')
-                location_data = {
-                    'lat': float(coords[0]),
-                    'lon': float(coords[1]),
-                    'city': data.get('city', 'Hyderabad')
-                }
-                st.success(f"Location found: {location_data['city']}")
-                return location_data
-            except (IndexError, ValueError):
-                st.warning("Could not parse location coordinates. Using default location.")
-                return {'lat': 17.4065, 'lon': 78.4772, 'city': 'Hyderabad'}
-                
-        else:
-            st.warning(f"Location service returned status code: {response.status_code}")
-            return {'lat': 17.4065, 'lon': 78.4772, 'city': 'Hyderabad'}
-            
-    except requests.RequestException as e:
-        st.warning(f"Network error while fetching location: {str(e)}")
-        return {'lat': 17.4065, 'lon': 78.4772, 'city': 'Hyderabad'}
-    except Exception as e:
-        st.warning(f"Unexpected error getting location: {str(e)}")
-        return {'lat': 17.4065, 'lon': 78.4772, 'city': 'Hyderabad'}
+    """Get user's current location using browser's geolocation API"""
+    # Add JavaScript for getting geolocation
+    st.markdown("""
+        <script>
+        // Function to get geolocation
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // Send location to Streamlit
+                        window.parent.postMessage({
+                            type: 'location',
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        }, '*');
+                    },
+                    function(error) {
+                        console.error('Error getting location:', error);
+                        // Use IP-based location as fallback
+                        fetch('https://ipapi.co/json/')
+                            .then(response => response.json())
+                            .then(data => {
+                                window.parent.postMessage({
+                                    type: 'location',
+                                    lat: data.latitude,
+                                    lon: data.longitude,
+                                    city: data.city
+                                }, '*');
+                            });
+                    }
+                );
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        }
+        // Request location when page loads
+        getLocation();
+        </script>
+    """, unsafe_allow_html=True)
 
+    # Create placeholder for location data
+    if 'location' not in st.session_state:
+        st.session_state.location = {
+            'lat': None,
+            'lon': None,
+            'city': None,
+            'source': None
+        }
+
+    # Check if we have location data
+    if st.session_state.location['lat'] is None:
+        st.warning("📍 Please allow location access for better results")
+        # Use a more general default location (New Delhi, India's capital)
+        return {'lat': 28.6139, 'lon': 77.2090, 'city': 'New Delhi'}
+    
+    return {
+        'lat': st.session_state.location['lat'],
+        'lon': st.session_state.location['lon'],
+        'city': st.session_state.location['city'] or 'Unknown City'
+    }
+
+# Add JavaScript event listener for location updates
+st.markdown("""
+    <script>
+    // Listen for location updates from geolocation
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'location') {
+            // Update Streamlit component with location data
+            window.parent.postMessage({
+                type: 'streamlit:setComponentValue',
+                value: {
+                    lat: event.data.lat,
+                    lon: event.data.lon,
+                    city: event.data.city,
+                    source: 'browser'
+                }
+            }, '*');
+        }
+    });
+    </script>
+""", unsafe_allow_html=True)
 
 def find_nearby_hospitals(lat, lon, radius=5000):
     """Find nearby hospitals using OpenStreetMap"""
@@ -1581,11 +1624,33 @@ def analyze_with_model(selected_model, image_data):
                 
                 # Hospital information section
                 st.markdown("### 🏥 Nearby Hospitals")
-                st.info("Location services are available based on your IP address.")
+                
+                # Create columns for the hospital section
+                hosp_col1, hosp_col2 = st.columns([3, 1])
+                
+                with hosp_col1:
+                    st.info("📍 Please allow location access to find nearby hospitals")
+                    
+                with hosp_col2:
+                    if st.button("Refresh Location"):
+                        st.rerun()
                 
                 # Get hospital info and display map
                 hospital_info = show_hospital_info(result_text)
+                
+                # Show appropriate message based on location source
+                if st.session_state.location.get('source') == 'browser':
+                    st.success("✅ Using your current location")
+                else:
+                    st.warning("⚠️ Using approximate location. Allow location access for better results")
+                
                 folium_static(hospital_info['map'])
+                
+                # Show nearby hospitals list in an expander
+                if hospital_info.get('hospitals'):
+                    with st.expander("View Nearby Hospitals"):
+                        for hospital in hospital_info['hospitals']:
+                            st.markdown(f"🏥 **{hospital['name']}**")
                 
                 # Emergency contacts section
                 st.markdown("""
