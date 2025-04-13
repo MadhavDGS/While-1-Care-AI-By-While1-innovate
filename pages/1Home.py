@@ -126,7 +126,19 @@ st.set_page_config(
     page_title="AI Medical Assistant",
     page_icon="♡",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.while1careai.com/help',
+        'Report a bug': "https://www.while1careai.com/bug",
+        'About': "# While(1)Care AI\nYour Health, Our Priority"
+    },
+    theme={
+        'base': 'dark',
+        'primaryColor': '#00d2ff',
+        'backgroundColor': '#0e1117',
+        'secondaryBackgroundColor': '#262730',
+        'textColor': '#fafafa',
+    }
 )
 
 # Add Font Awesome for icons

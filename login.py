@@ -8,7 +8,19 @@ st.set_page_config(
     page_title="While(1)Care AI",
     page_icon="♡",
     layout="centered",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
+    menu_items={
+        'Get Help': 'https://www.while1careai.com/help',
+        'Report a bug': "https://www.while1careai.com/bug",
+        'About': "# While(1)Care AI\nYour Health, Our Priority"
+    },
+    theme={
+        'base': 'dark',
+        'primaryColor': '#00d2ff',
+        'backgroundColor': '#0e1117',
+        'secondaryBackgroundColor': '#262730',
+        'textColor': '#fafafa',
+    }
 )
 
 # Supabase configuration
