@@ -494,9 +494,9 @@ def load_model(model_type):
         'bone_fracture': "bone.pt",  # to be added later
         'skin_disease': "skin345.pt",  # to be added later
         'diabetic_retinopathy': "xiaoru.pt",  # Diabetic retinopathy detection
-        'diabetic_tongue': "diabetic_tongue.pt",  # Diabetic tongue analysis
-        'diabetic_ulcer': "diabetic_ulcer.pt",  # Diabetic ulcer detection
-        'diabetic_nail': "diabetic_nail.pt"  # Diabetic nail analysis
+        'diabetic_tongue': "tongue(2).pt",  # Diabetic tongue analysis
+        'diabetic_ulcer': "ulcer.pt",  # Diabetic ulcer detection
+        'diabetic_nail': "nails.pt"  # Diabetic nail analysis
     }
 
     if model_type not in st.session_state.models:
