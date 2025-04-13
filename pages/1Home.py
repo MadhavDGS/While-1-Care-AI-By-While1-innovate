@@ -116,7 +116,10 @@ detection_types = {
     "lung_cancer": "<i class='fas fa-lungs'></i> Lung Cancer",
     "bone_fracture": "<i class='fas fa-bone'></i> Bone Fracture",
     "skin_disease": "<i class='fas fa-microscope'></i> Skin Disease",
-    "diabetic_retinopathy": "<i class='fas fa-eye'></i> Diabetic Retinopathy"  # Added new detection type
+    "diabetic_retinopathy": "<i class='fas fa-eye'></i> Diabetic Retinopathy",
+    "diabetic_tongue": "<i class='fas fa-tongue'></i> Diabetic Tongue Analysis",
+    "diabetic_ulcer": "<i class='fas fa-band-aid'></i> Diabetic Ulcer",
+    "diabetic_nail": "<i class='fas fa-hand'></i> Diabetic Nail Analysis"
 }
 
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -490,7 +493,10 @@ def load_model(model_type):
         'lung_cancer': "lung_cancer.pt",  # to be added later
         'bone_fracture': "bone.pt",  # to be added later
         'skin_disease': "skin345.pt",  # to be added later
-        'diabetic_retinopathy': "xiaoru.pt"  # Added new model path
+        'diabetic_retinopathy': "xiaoru.pt",  # Diabetic retinopathy detection
+        'diabetic_tongue': "diabetic_tongue.pt",  # Diabetic tongue analysis
+        'diabetic_ulcer': "diabetic_ulcer.pt",  # Diabetic ulcer detection
+        'diabetic_nail': "diabetic_nail.pt"  # Diabetic nail analysis
     }
 
     if model_type not in st.session_state.models:
@@ -498,8 +504,8 @@ def load_model(model_type):
         if model_path and os.path.exists(model_path):
             st.session_state.models[model_type] = YOLO(model_path)
         else:
-            st.warning(f"Model for {model_type} not found. Only Brain Tumor and Diabetic Retinopathy detection are currently available.")
-            if model_type not in ['brain_tumor', 'diabetic_retinopathy']:
+            st.warning(f"Model for {model_type} not found. Only Brain Tumor and Diabetic detection models are currently available.")
+            if model_type not in ['brain_tumor', 'diabetic_retinopathy', 'diabetic_tongue', 'diabetic_ulcer', 'diabetic_nail']:
                 return None
             # Fallback to brain tumor model
             st.session_state.models[model_type] = YOLO("braintumorp1.pt")
@@ -1234,7 +1240,7 @@ def generate_image_description(image_data):
         # Create model instance and generate description
         model = genai.GenerativeModel("gemini-2.0-flash")
         
-        # Updated prompt for more concise response
+        # Updated prompt to include diabetic conditions
         prompt = """
         Analyze this medical image and respond in exactly 7 words following this format:
         'Detected: [condition]. Use [detection_type] detection model.'
@@ -1242,6 +1248,10 @@ def generate_image_description(image_data):
         Example responses:
         'Detected: Brain tumor. Use brain tumor detection.'
         'Detected: Eye condition. Use eye disease detection.'
+        'Detected: Diabetic tongue. Use diabetic tongue detection.'
+        'Detected: Diabetic ulcer. Use diabetic ulcer detection.'
+        'Detected: Diabetic nail. Use diabetic nail detection.'
+        'Detected: Diabetic retinopathy. Use diabetic retinopathy detection.'
         """
         
         response = model.generate_content(
