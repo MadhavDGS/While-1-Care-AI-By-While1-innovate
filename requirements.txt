@@ -6,8 +6,8 @@ numpy==1.26.4
 deep-translator==1.11.4
 SpeechRecognition==3.10.1
 pyttsx3==2.90
-torch==1.13.1
-torchvision==0.14.1
+torch==2.2.0
+torchvision==0.17.0
 watchdog==3.0.0
 folium==0.12.1
 streamlit-folium==0.7.0

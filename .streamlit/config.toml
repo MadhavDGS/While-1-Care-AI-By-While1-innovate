@@ -7,9 +7,6 @@ enableXsrfProtection = false
 serverAddress = "0.0.0.0"
 serverPort = 8501
 
-[runner]
-pythonPath = "python3.9"
-
 [theme]
 primaryColor = "#0066ff"
 backgroundColor = "#ffffff"
