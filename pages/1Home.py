@@ -453,8 +453,8 @@ with st.sidebar:
     # Language selector
     st.markdown("### <i class='fas fa-globe'></i> Language", unsafe_allow_html=True)
     languages = {
-        'en': '<i class="fas fa-flag-usa"></i> English',
-        'hi': '<i class="fas fa-flag"></i> हिंदी'
+        'en': '🇺🇸 English',
+        'hi': '🇮🇳 हिंदी'
     }
     selected_lang = st.selectbox("Select Language", options=list(languages.keys()),
                                 format_func=lambda x: languages[x],
