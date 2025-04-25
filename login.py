@@ -469,6 +469,13 @@ def show_login_page():
             st.session_state['role'] = 'Patient'
             st.switch_page("pages/1Home.py")
 
+    st.markdown("""
+    <div class='prediction-container'>
+    <div class="card-header">
+        Assessment Results
+    </div>
+    """, unsafe_allow_html=True)
+
 def main():
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False

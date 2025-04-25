@@ -401,7 +401,7 @@ with col2:
         st.markdown("""
             <div class='prediction-container'>
             <div class="card-header">
-                <i class="fas fa-chart-line"></i> Assessment Results
+                <i class="fas fa-clipboard-check"></i> Assessment Results
             </div>
             """, unsafe_allow_html=True)
         
