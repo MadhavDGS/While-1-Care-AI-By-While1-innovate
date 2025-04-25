@@ -21,10 +21,3 @@ aptSources = [
     "deb http://deb.debian.org/debian-security bullseye-security main",
     "deb http://deb.debian.org/debian bullseye-updates main"
 ]
-aptPackages = [
-    "python3-opencv",
-    "libgl1",
-    "libsm6",
-    "libxext6",
-    "libxrender1"
-]

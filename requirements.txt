@@ -1,8 +1,10 @@
-streamlit
-opencv-python-headless
+streamlit==1.32.0
+pandas==2.2.0
+numpy==1.26.3
+scikit-learn==1.4.0
+opencv-python-headless==4.9.0.80
 pillow
 google-generativeai
-numpy
 deep-translator
 SpeechRecognition
 pyttsx3
@@ -15,9 +17,7 @@ geopy
 requests
 supabase
 python-dotenv
-scikit-learn
 joblib
-pandas
 reportlab
 google-auth-oauthlib
 google-api-python-client
